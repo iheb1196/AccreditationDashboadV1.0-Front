@@ -1,0 +1,59 @@
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">COURSES</h1>
+
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">My Courses List</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>coursname</th>
+                        <th>Program</th>
+                        <th>Term</th>
+                        <th>Year</th>
+                        <th>Progress</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>coursname</th>
+                        <th>Program</th>
+                        <th>Term</th>
+                        <th>Year</th>
+                        <th>Progress</th>
+                        <th>Actions</th>
+
+                    </tr>
+                </tfoot>
+                <tbody>
+
+                    <tr *ngFor="let c of myCourses;let j = index">
+                        <td>{{j}}</td>
+                        <td>{{c.coursname}}</td>
+                        <td>{{c.program}}</td>
+
+                        <td>{{c.term}}</td>
+                        <td>{{c.year}}</td>
+                        <td><progress id="file" max="100" value="70"> 70% </progress></td>
+                        <td>
+                            <button class="btn btn-primary btn-sm mx-2" data-toggle="modal" data-target="#exampleModal"
+                                (click)=" selectedCourse=c ;uploadFile(selectedCourse) ">
+                                <i class="fas fa-fw fa-edit"></i>
+                            </button>
+
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

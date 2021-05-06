@@ -1,0 +1,44 @@
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Add course</h1>
+
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">My courses</h6>
+
+     </div>
+    <div class="card-body">
+
+        <form [formGroup]="addCourseForm" >
+
+            <div class="form-group">
+                <label for="">Course</label>
+                <input formControlName="course" type="text" class="form-control" >
+            </div>
+            <div class="form-group">
+                <label for="">Best grade</label>
+                <input type="file" class="form-control" (change)="fileChange($event)" >
+            </div>
+            <!--<div class="form-group">
+                <label for="">Lowest grade</label>
+                <input type="file" class="form-control" >
+            </div>
+            <div class="form-group">
+                <label for="">Evaluation</label>
+                <input type="file"  class="form-control" >
+            </div>-->
+
+            <div class="form-group">
+                <button class="btn btn-primary" (click)="uploadFile()">SAVE</button>
+            </div>
+
+            
+            
+            
+            
+
+        </form>
+    </div>
+
+</div>

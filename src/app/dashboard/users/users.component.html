@@ -1,0 +1,124 @@
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Users</h1>
+
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Users List </h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Useranme</th>
+                        <th>email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Useranme</th>
+                        <th>email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+
+                    <tr *ngFor="let u of Users;let j = index">
+                        <td>{{j}}</td>
+                        <td>{{u.username}}</td>
+
+
+                        <td>{{u.email}}</td>
+                        <td>{{u.role}}</td>
+
+                        <td>
+                            
+                            <button class="btn btn-primary btn-sm mx-2" data-toggle="modal" data-target="#exampleModal"
+                                (click)="selectedUser = u ;selectUser(selectedUser) ">
+                                <i class="fas fa-fw fa-edit"></i>
+                            </button>
+
+                            <a (click)="deleteUser(u.id)" class="text-danger"> <i class="fas fa-trash"></i> </a>
+
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Client</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="userForm">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">username</label>
+                            <input type="text" class="form-control" formControlName="username" placeholder="username">
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+                </form>
+                <form [formGroup]="courseForm">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Add Course</label>
+                            <select class="form-control" formControlName="coursename">
+
+                                <option *ngFor="let c of Courses" >{{c.course_name}}</option>
+                            </select>
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Term</label>
+                                <select class="form-control" formControlName="term">
+                                    <option value="FALL">FALL</option>
+                                    <option value="SPRING">SPRING</option>
+                                    <option value="WINTER">WINTER</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">YEAR</label>
+                                <input type="number" min="1900" max="2099" step="1" value="2016" class="form-control"
+                                    formControlName="year" />
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button (click)="assignCourses();selectUser(selectedUser)" type="button" class="btn btn-primary" >
+                    Save changes
+                </button>
+                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Pending Users</h1>
+
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Useranme</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Useranme</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+
+                    <tr *ngFor="let p of pendingsUsers;let j = index">
+                        <td>{{j}}</td>
+                        <td>{{p.username}}</td>
+                        <td>
+                            
+                            <form [formGroup]="roleForm">
+                                <div class="form-group">
+                                    
+                                    <select formControlName="role" class="form-control">
+                                        <input type="text" placeholder="roles filter" (keyup)="filter($event)"  id=""> 
+                                        
+                                            
+                                            <option value="" > </option>
+                                            <option *ngFor="let r of filtredroles" value="{{r.id}}"> {{r.value}}</option>
+
+                                        
+                                        
+
+                                    </select>
+                                </div>
+                                
+                              
+                            </form>
+                        </td>
+                   <td>{{p.status}}</td>
+        <td>
+            <a (click)="acceptUser(p.id) ;editUser(p.username)" class="text-success" style="margin-right: 25px;"> <i
+                    class="fas fa-check"></i> </a>
+
+            <a (click)="deleteUser(p.id)" class="text-danger"> <i class="fas fa-trash"></i> </a>
+
+
+        </td>
+
+        </tr>
+
+
+        </tbody>
+        </table>
+    </div>
+</div>
+</div>
