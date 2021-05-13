@@ -36,6 +36,12 @@ export class HomeComponent implements OnInit {
           link: '/dashboard/home/users',
           subMenus: []
         },
+        {
+          title: "Deliverables ",
+          counter: 0,
+          link: '/dashboard/home/allprofessors',
+          subMenus: []
+        },
         ]
         break;
 
@@ -53,6 +59,23 @@ export class HomeComponent implements OnInit {
 
 
         break;  
+        case 'PROGRAM DIRECTOR':
+        this.menu = [
+        {
+          title: "My courses",
+          counter: 0,
+          link: '/home/mycourses',
+          subMenus: []
+        },
+        {
+          title: "Professors",
+          counter: 0,
+          link: '/home/myprofessors',
+          subMenus: []
+        },
+
+
+        ]
 
       default:
         break;

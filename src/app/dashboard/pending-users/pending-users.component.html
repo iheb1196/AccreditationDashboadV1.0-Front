@@ -15,6 +15,7 @@
                         <th>#</th>
                         <th>Useranme</th>
                         <th>Role</th>
+                        <th>Date</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -24,6 +25,7 @@
                         <th>#</th>
                         <th>Useranme</th>
                         <th>Role</th>
+                        <th>Date</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -33,42 +35,98 @@
                     <tr *ngFor="let p of pendingsUsers;let j = index">
                         <td>{{j}}</td>
                         <td>{{p.username}}</td>
+                        <td>{{p.email}}</td>
+                        <td>{{p.date}}</td>
+                        <td>{{p.status}}</td>
                         <td>
-                            
-                            <form [formGroup]="roleForm">
-                                <div class="form-group">
-                                    
-                                    <select formControlName="role" class="form-control">
-                                        <input type="text" placeholder="roles filter" (keyup)="filter($event)"  id=""> 
-                                        
-                                            
-                                            <option value="" > </option>
-                                            <option *ngFor="let r of filtredroles" value="{{r.id}}"> {{r.value}}</option>
+                             <a (click)="selectedUser = p ;selectUser(selectedUser);getPrograms();getCourses()" data-toggle="modal" data-target="#exampleModal"class="text-success" style="margin-right: 25px;"> <i
+                                class="fas fa-edit"></i> </a>
 
-                                        
-                                        
-
-                                    </select>
-                                </div>
-                                
-                              
-                            </form>
+                             <a (click)="deleteUser(p.id)" class="text-danger"> <i class="fas fa-trash"></i> </a>
                         </td>
-                   <td>{{p.status}}</td>
-        <td>
-            <a (click)="acceptUser(p.id) ;editUser(p.username)" class="text-success" style="margin-right: 25px;"> <i
-                    class="fas fa-check"></i> </a>
-
-            <a (click)="deleteUser(p.id)" class="text-danger"> <i class="fas fa-trash"></i> </a>
-
-
-        </td>
-
-        </tr>
-
-
-        </tbody>
+                 </tr>
+             </tbody>
         </table>
     </div>
 </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Request </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="userForm">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Username:</label>
+                            <input type="text" class="form-control" formControlName="username" placeholder="username">
+                        </div>
+                    </div>
+                    
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Email:</label>
+                                <input type="text" class="form-control" formControlName="email" placeholder="email">
+                            </div>
+                        </div>
+                </form>
+                
+                <form [formGroup]="roleForm">
+                    <div class="form-group">
+                        <label for="inputEmail4">Role:</label>
+
+                        <select formControlName="role" class="form-control">
+                            
+                            
+                            
+                                
+                                <option value="" > </option>
+                                <option *ngFor="let r of roles" value="{{r.id}}"> {{r.value}}</option>
+                        </select>
+                         <div>
+
+                         </div>
+                        
+                        <div id="champs" *ngIf="roleForm.value.role == 'PROGRAM DIRECTOR'">
+                            <label for="inputEmail4">Program:</label>
+                            <select formControlName="program" class="form-control">
+                            
+                            
+                                
+                                <option value="" > </option>
+                                <option *ngFor="let program of programs" value="{{program.program}}"> {{program.program}}</option>
+                        </select>
+                        </div>
+                        <div id="champs" *ngIf="roleForm.value.role == 'COURSE COORDINATOR'"> 
+                            <label for="inputEmail4">Course to coordinate :</label>
+                            <select formControlName="course_coordinate" class="form-control">
+                            
+                            
+                                
+                                <option value="" > </option>
+                                <option *ngFor="let c of Courses" value="{{c.course_name}}"> {{c.course_name}}</option>
+                        </select>
+                        </div>
+
+
+                        
+                    </div>
+                    
+                  
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button (click)="acceptUser(selectedUser.id);editUser(selectedUser.username)"  type="button" class="btn btn-primary" >
+                    Save changes
+                </button>
+                
+            </div>
+        </div>
+    </div>
 </div>

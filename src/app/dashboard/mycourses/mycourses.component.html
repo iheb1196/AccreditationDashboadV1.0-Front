@@ -17,8 +17,12 @@
                         <th>Program</th>
                         <th>Term</th>
                         <th>Year</th>
+                        <th>Outcome</th>
+                        <th>Artificat</th>
+                        <th>Course Representative</th>
+
                         <th>Progress</th>
-                        <th>Actions</th>
+                        
                     </tr>
                 </thead>
                 <tfoot>
@@ -28,8 +32,12 @@
                         <th>Program</th>
                         <th>Term</th>
                         <th>Year</th>
+                        <th>Outcome</th>
+                        <th>Artificat</th>
+                        <th>Course Representative</th>
+
                         <th>Progress</th>
-                        <th>Actions</th>
+                        
 
                     </tr>
                 </tfoot>
@@ -42,14 +50,28 @@
 
                         <td>{{c.term}}</td>
                         <td>{{c.year}}</td>
-                        <td><progress id="file" max="100" value="70"> 70% </progress></td>
                         <td>
+                            
+                                   <a id="champs" *ngIf="c.hasOwnProperty('outcome') " [href]="c.outcome" download >Preview</a>
+                            
                             <button class="btn btn-primary btn-sm mx-2" data-toggle="modal" data-target="#exampleModal"
-                                (click)=" selectedCourse=c ;uploadFile(selectedCourse) ">
-                                <i class="fas fa-fw fa-edit"></i>
-                            </button>
+                            (click)=" selectedCourse=c ; selectCourse(selectedCourse) ">
+                            <i class="fas fa-fw fa-edit"></i>
+                                 </button>
+                           </td>
+                        <td><div id="champs" *ngIf="c.hasOwnProperty('artificat') ">
+                            <a [href]="c.outcome" download >Preview</a>
+                           </div>   
+                            <button class="btn btn-primary btn-sm mx-2" data-toggle="modal" data-target="#exampleModal1"
+                            (click)=" selectedCourse=c ; selectCourse(selectedCourse) ">
+                            <i class="fas fa-fw fa-edit"></i>
+                        </button></td>
+                        <td>
+                           
 
                         </td>
+                        <td><progress id="file" max="100" value="70"> 70% </progress></td>
+                        
                     </tr>
 
                 </tbody>
@@ -57,3 +79,102 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload Outcome Artificat </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="courseForm">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">coursename</label>
+                            <input type="text" class="form-control" formControlName="coursename" placeholder="coursename">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">TERM</label>
+                            <input type="text" class="form-control" formControlName="term" placeholder="term">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Year</label>
+                            <input type="text" class="form-control" formControlName="year" placeholder="year">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="">Outcome</label>
+                        <input type="file" class="form-control" (change)="fileChange($event)" >
+                    </div>
+
+                </form>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button  type="button" (click)="uploadOutcome()" class="btn btn-primary" >
+                    Save changes
+                </button>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload Artificat Form</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="courseForm">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">coursename</label>
+                            <input type="text" class="form-control" formControlName="coursename" placeholder="coursename">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">TERM</label>
+                            <input type="text" class="form-control" formControlName="term" placeholder="term">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Year</label>
+                            <input type="text" class="form-control" formControlName="year" placeholder="year">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="">Artificat</label>
+                        <input type="file" class="form-control" (change)="fileChange($event)" >
+                    </div>
+
+                </form>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button  type="button" (click)="uploadArtificat()" class="btn btn-primary" >
+                    Save changes
+                </button>
+                
+            </div>
+        </div>
+    </div>
+</div>
+

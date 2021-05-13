@@ -61,10 +61,13 @@ export class AddcourseComponent implements OnInit {
     form.append("token", localStorage.getItem('token'));
     
     
-
+    console.log("hi");
+    
     console.log(this.FileTodUpload);
     
     this.uploadToserver(form).subscribe((data)=>{
+      console.log("hello");
+      
       console.log(data);
       
       

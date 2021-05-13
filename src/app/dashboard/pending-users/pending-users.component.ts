@@ -10,10 +10,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class PendingUsersComponent implements OnInit {
 
   roleForm: FormGroup;
-
-
-
+  userForm: FormGroup;
+  selectedUser;
+  expression = true ;
   pendingsUsers:any = [];
+  Courses:any=[];
+  programs:any = [];
   roles = [
     { id : "PROGRAM DIRECTOR", value : "program director" },
     { id : "PROFESSOR", value : "professor" },
@@ -21,40 +23,31 @@ export class PendingUsersComponent implements OnInit {
    
     
   ]
-
-  filtredroles = [
-    { id : "PROGRAM DIRECTOR", value : "program director" },
-    { id : "PROFESSOR", value : "professor" },
-    { id : "COURSE COORDINATOR", value : "course coordinator" },
-    
-  ]
-
- 
-
   constructor(private api:ApiService) { 
     this.roleForm = new FormGroup({
       
       role: new FormControl('', [Validators.required]),
+      program: new FormControl(''),
+      course_coordinate :new FormControl(''),
+    });
+    
+    this.userForm = new FormGroup({
+      username: new FormControl('',[Validators.required]),
+      email: new FormControl('',[Validators.required]),
     })
-  }
 
+  }
   ngOnInit(): void {
     const role = localStorage.getItem('role');
     this.getNewUsersRequest();
   }
-
-  filter(e){
-    console.log(e.target.value);
-
-    const q = e.target.value;
-
-    this.filtredroles = this.roles.filter((e)=>{
-      return (  e.value.indexOf(q) != -1  );
+  selectUser(selectedUser){
+    this.userForm.setValue({
+      username : this.selectedUser.username,
+      email : this.selectedUser.email
     })
     
   }
-  
-
   getNewUsersRequest(){
     this.api.getNewUsersRequests().subscribe((data:any)=>{
       console.log(data);
@@ -62,7 +55,17 @@ export class PendingUsersComponent implements OnInit {
       this.pendingsUsers = data;
     })
   }
+  getPrograms(){
+    this.api.getPrograms().subscribe((data:any) => {
+      this.programs = data ;
+    })
+  }
+  getCourses(){
+    this.api.getCourses().subscribe((data:any)=>{
+      this.Courses=data;
 
+    })
+  }
   deleteUser(id){
     console.log(id);
 
@@ -79,12 +82,11 @@ export class PendingUsersComponent implements OnInit {
     }
     
   }
-
-  editUser(username) {
+ editUser(username) {
      const role = this.roleForm.value.role;
-     console.log(role);
-     console.log(username);
-     this.api.editUser(username,role).subscribe((data:any)=>{
+     const program = this.roleForm.value.program;
+     
+     this.api.editUser(username,role,program).subscribe((data:any)=>{
        console.log(data);
        
      })
@@ -92,8 +94,6 @@ export class PendingUsersComponent implements OnInit {
      
 
   }
-  
-
   acceptUser(id){
     
     

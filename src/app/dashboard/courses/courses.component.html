@@ -36,7 +36,7 @@
                     <tr *ngFor="let c of courses;let j = index">
                         <td>{{j}}</td>
                         <td>{{c.coursename}}</td>
-                        <td> <a [href]=" c.firstFile " download >Preview</a> </td>
+                        <td> <a [href]="c.outcome " download >Preview</a> </td>
                         <td>{{c.status}}</td>
                         <td>
                            <button class="btn btn-sm btn-warning">SUBMIT</button>

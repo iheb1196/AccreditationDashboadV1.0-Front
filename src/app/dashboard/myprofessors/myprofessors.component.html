@@ -1,0 +1,88 @@
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Users</h1>
+
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Users List </h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Useranme</th>
+                        <th>email</th>
+                        <th>Role</th>
+                        <th>Coursename</th>
+                        <th>Outcome</th>
+                        <th>Artificat</th>
+                        <th>Course Representative</th>
+
+                        <th>Term</th>
+                        <th>Year</th>
+                        
+
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Useranme</th>
+                        <th>email</th>
+                        <th>Role</th>
+                        <th>Coursename</th>
+                        <th>Outcome</th>
+                        <th>Artificat</th>
+                        <th>Course Representative</th>
+                        <th>Term</th>
+                        <th>Year</th>
+                        
+                        
+
+                        <th>Actions</th>
+                        
+                    </tr>
+                </tfoot>
+                <tbody>
+
+                    <tr *ngFor="let u of Users;let j = index">
+                        <td>{{j}}</td>
+                        <td>{{u.username}}</td>
+                        <td>{{u.email}}</td>
+                        <td>{{u.role}}</td>
+                        <td>{{u.coursename}}</td>
+                        <td><div id="champs" *ngIf="u.hasOwnProperty('outcome') ">
+                            <a [href]="u.outcome" download >Preview</a>
+                        </div>
+                        <td><div id="champs" *ngIf="u.hasOwnProperty('artificat') ">
+                            <a [href]="u.artificat" download >Preview</a>
+                        </div></td>
+                        <td></td>
+                        <td>{{u.term}}</td>
+                        <td>{{u.year}}</td>
+                        
+                        
+
+                        <td>
+                            
+                            <button class="btn btn-primary btn-sm mx-2" >
+                                <i class="fas fa-fw fa-edit"></i>
+                            </button>
+
+                            <a  class="text-danger"> <i class="fas fa-trash"></i> </a>
+
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

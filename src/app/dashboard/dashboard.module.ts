@@ -11,10 +11,12 @@ import { AddcourseComponent } from './addcourse/addcourse.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './users/users.component';
 import { MycoursesComponent } from './mycourses/mycourses.component';
+import { MyprofessorsComponent } from './myprofessors/myprofessors.component';
+import { AllprofessorsComponent } from './allprofessors/allprofessors.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, HomeComponent, PendingUsersComponent, CoursesComponent, AddcourseComponent, UsersComponent, MycoursesComponent],
+  declarations: [DashboardComponent, HomeComponent, PendingUsersComponent, CoursesComponent, AddcourseComponent, UsersComponent, MycoursesComponent, MyprofessorsComponent, AllprofessorsComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

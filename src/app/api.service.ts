@@ -45,6 +45,25 @@ export class ApiService {
     )
     
   }
+  getPrograms(){
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username')
+
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization':token
+
+      })
+    };
+    return this.http.get(environment.apiEndPoint+'/app/getPrograms',
+    
+    httpOptions
+    
+    )
+    
+  }
   getUsers(){
 
     const token = localStorage.getItem('token');
@@ -57,6 +76,40 @@ export class ApiService {
       })
     };
     return this.http.get(environment.apiEndPoint+'/app/getUsers',
+    httpOptions
+    
+    )
+
+  }
+  getMyProfessors(){
+
+    const token = localStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization':token
+        
+      
+      })
+    };
+    return this.http.get(environment.apiEndPoint+'/app/getMyProfessors',
+    httpOptions
+    
+    )
+
+  }
+  getAllProfessors(){
+
+    const token = localStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization':token
+        
+      
+      })
+    };
+    return this.http.get(environment.apiEndPoint+'/app/getAllProfessors',
     httpOptions
     
     )
@@ -96,7 +149,7 @@ export class ApiService {
     
     )
   }
-  editUser(username,role){
+  editUser(username,role,program){
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -104,7 +157,7 @@ export class ApiService {
       })
     };
     return this.http.post(environment.apiEndPoint+'/app/editUser',
-    {role:role,username:username},
+    {role:role,username:username,program:program},
     httpOptions
     
     )
