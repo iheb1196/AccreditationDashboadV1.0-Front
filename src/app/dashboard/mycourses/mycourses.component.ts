@@ -15,7 +15,7 @@ export class MycoursesComponent implements OnInit {
   selectedCourse;
 
   myCourses: any [];
-  FileTodUpload:File;
+  FilesTodUpload:File[];
   courseForm : FormGroup;
   
   
@@ -37,15 +37,10 @@ export class MycoursesComponent implements OnInit {
 
   fileChange(e){
     console.log(e);
-    this.FileTodUpload=e.target.files[0]
+    this.FilesTodUpload=e.target.files;
 
-    if (e.target.files.length === 0)
+    /*if (e.target.files.length === 0)
       return;
- 
-    /*var mimeType = e.target.files[0].type;
-    if (mimeType.match(/image\/) == null) {
-      return;
-    }*/
  
     var reader = new FileReader();
     
@@ -53,10 +48,7 @@ export class MycoursesComponent implements OnInit {
     reader.onload = (_event) => { 
       
       
-      
-       
-      
-    }
+    }*/
   }
 
 
@@ -84,8 +76,14 @@ export class MycoursesComponent implements OnInit {
    uploadOutcome(){
     
     var form = new FormData();
+
+    for (let i = 0; i < this.FilesTodUpload.length; i++) {
+      const file = this.FilesTodUpload[i];
+      form.append("outcome"+i, file, file.name);
+      
+    }
     
-    form.append("filetoupload", this.FileTodUpload, this.FileTodUpload.name);
+    form.append("fileslength", this.FilesTodUpload.length+"");
     form.append("coursename", this.courseForm.value.coursename);
     form.append("term",this.courseForm.value.term);
     form.append("year",this.courseForm.value.year);
@@ -95,7 +93,7 @@ export class MycoursesComponent implements OnInit {
     
     
 
-    console.log(this.FileTodUpload);
+    //console.log(this.FileTodUpload);
     console.log("hello");
     
     
@@ -111,7 +109,7 @@ export class MycoursesComponent implements OnInit {
     })
   }
   uploadArtificat(){
-    
+    /*
     var form = new FormData();
     
     form.append("filetoupload", this.FileTodUpload, this.FileTodUpload.name);
@@ -137,7 +135,7 @@ export class MycoursesComponent implements OnInit {
     },(error)=>{
       console.log(error);
       
-    })
+    })*/
   }
 
 
@@ -177,6 +175,27 @@ export class MycoursesComponent implements OnInit {
     })
   }
   
+
+  getP(i){
+    console.log(i);
+
+    let p = 0;
+
+    const course = this.myCourses[i];
+
+    if (course. outcome !=  null) {
+      p+=50;
+    }
+
+    
+    if (course. artifact !=  null) {
+      p+=50;
+    }
+
+
+    return p;
+    
+  }
  
 
 }

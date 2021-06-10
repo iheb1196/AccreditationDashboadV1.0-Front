@@ -16,9 +16,30 @@ export class HomeComponent implements OnInit {
   pendingsUsers:any = [];
   username = localStorage.getItem('username');
 
+  notifications : any[] = [];
+
   constructor(private api:ApiService, private auth:AuthService, private router:Router) { }
 
+
+  updateOldNotifications(){
+    this.api.updateNotifications().subscribe((data)=>{
+      console.log(data);
+      
+    })
+  }
+
+
   ngOnInit(): void {
+    this.api.getNotifications().subscribe((data:any[])=>{
+      console.log(data);
+      
+      this.notifications = data.slice(0,5).filter((n)=> n.vue == false)
+
+
+      
+    })
+
+
     const role = localStorage.getItem('role');
 
     switch (role) {

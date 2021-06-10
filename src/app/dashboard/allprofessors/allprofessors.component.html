@@ -13,13 +13,10 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Useranme</th>
-                        <th>email</th>
-                        <th>Role</th>
-                        <th>Coursename</th>
-                        <th>outcome</th>
-                        <th>Term</th>
-                        <th>Year</th>
+                        <th>course name</th>
+                        <th>term</th>
+                        <th>year</th>
+                        <th>proffesors</th>
                         
 
                         <th>Actions</th>
@@ -28,13 +25,10 @@
                 <tfoot>
                     <tr>
                         <th>#</th>
-                        <th>Useranme</th>
-                        <th>email</th>
-                        <th>Role</th>
-                        <th>Coursename</th>
-                        <th>outcome</th>
-                        <th>Term</th>
-                        <th>Year</th>
+                        <th>course name</th>
+                        <th>term</th>
+                        <th>year</th>
+                        <th>proffesors</th>
                         
 
                         <th>Actions</th>
@@ -43,18 +37,53 @@
                 </tfoot>
                 <tbody>
 
-                    <tr *ngFor="let u of Users;let j = index">
+                    <tr *ngFor="let u of courses;let j = index">
                         <td>{{j}}</td>
-                        <td>{{u.username}}</td>
-                        <td>{{u.email}}</td>
-                        <td>{{u.role}}</td>
                         <td>{{u.coursename}}</td>
-                        <td><div id="champs" *ngIf="u.hasOwnProperty('outcome') ">
+                        <td>{{u.term}}</td>
+                        <td>{{u.year}}</td>
+                        <!--<td><div id="champs" *ngIf="u.hasOwnProperty('outcome') ">
                                 <a [href]="u.outcome" download >Preview</a>
                             </div>
                             
+                        </td>-->
+                        <td>
+                         
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>email</th>
+                                        <th>artifact</th>
+                                        
+                
+                                        <th>outcome</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        
+                                        <th>email</th>
+                                        <th>artifact</th>
+
+                
+                                        <th>outcome</th>
+                                        
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <tr *ngFor="let p of u.proffesors">
+                                        <td>{{p.profferssorEmail}}</td>
+                                        <td><div id="champs" *ngIf="p.hasOwnProperty('artifact') ">
+                                            <a [href]="p.artifact" download >Preview</a>
+                                        </div>  </td>
+                                        <td><div id="champs" *ngIf="p.hasOwnProperty('outcome') ">
+                                            <a [href]="p.outcome" download >Preview</a>
+                                        </div>  </td>
+                                    </tr>
+                                       
+                            
+                            
                         </td>
-                        <td>{{u.term}}</td>
                         <td>{{u.year}}</td>
                         
 

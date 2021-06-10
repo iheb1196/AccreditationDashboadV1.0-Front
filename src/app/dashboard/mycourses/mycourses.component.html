@@ -70,7 +70,7 @@
                            
 
                         </td>
-                        <td><progress id="file" max="100" value="70"> 70% </progress></td>
+                        <td><progress id="file" max="100" [value]="getP(j)"> {{getP(j)}}% </progress></td>
                         
                     </tr>
 
@@ -112,7 +112,7 @@
                     
                     <div class="form-group">
                         <label for="">Outcome</label>
-                        <input type="file" class="form-control" (change)="fileChange($event)" >
+                        <input type="file" multiple class="form-control" (change)="fileChange($event)" >
                     </div>
 
                 </form>

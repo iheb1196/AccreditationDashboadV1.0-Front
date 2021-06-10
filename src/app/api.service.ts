@@ -197,6 +197,42 @@ export class ApiService {
     
     )
   }
+
+
+  
+  getNotifications(){
+    
+
+    const token = localStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization':token
+      })
+    };
+    return this.http.get(environment.apiEndPoint+'/app/notifications',
+    httpOptions
+    
+    )
+  }
+
+  updateNotifications(){
+    
+    
+    const token = localStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization':token
+      })
+    };
+    return this.http.get(environment.apiEndPoint+'/app/notifications/update',
+    httpOptions
+    
+    )
+  }
+
+
   assignCourses(username,email,coursename,term,role,year){
 
     const httpOptions = {
